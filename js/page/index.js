@@ -1,9 +1,24 @@
+
+import AboutPage from './AboutPage';
+import AuthHelpPage from './AuthHelpPage';
+import AuthPage from './AuthPage';
+import HelpPage from './HelpPage';
+
 import LoginPage from './LoginPage';
-import ObjectListPage from './ObjectListPage';
+import HomePage from './HomePage';
 import ProfilePage from './ProfilePage';
+import RegisterPage from './RegisterPage';
+import ResetPasswordPage from './ResetPasswordPage';
+
 
 export {
+  AboutPage,
+  AuthHelpPage,
+  AuthPage,
+  HelpPage,
   LoginPage,
-  ObjectListPage,
+  HomePage,
   ProfilePage,
+  RegisterPage,
+  ResetPasswordPage,
 };

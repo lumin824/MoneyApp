@@ -9,7 +9,7 @@ import {
 
 class P extends Component {
   render(){
-    return <Text>ObjectList</Text>
+    return <Text>认证</Text>
   }
 }
 

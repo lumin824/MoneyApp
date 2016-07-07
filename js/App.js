@@ -27,15 +27,39 @@ class TabIcon extends Component {
 
 const ConnectedRouter = connect()(Router);
 
+const getSceneStyle = (props, computedProps) => {
+  const style = {
+    flex: 1,
+    backgroundColor: '#f1f1f1',
+    shadowColor: null,
+    shadowOffset: null,
+    shadowOpacity: null,
+    shadowRadius: null,
+  };
+  if (computedProps.isActive) {
+    style.marginTop = computedProps.hideNavBar ? 0 : 64;
+    style.marginBottom = computedProps.hideTabBar ? 0 : 50;
+  }
+  return style;
+};
+
 class App extends Component {
   render(){
     return (
-      <ConnectedRouter>
-        <Scene key='login' component={page.LoginPage} title='登录' type='reset' />
+      <ConnectedRouter
+        getSceneStyle={getSceneStyle}
+        >
+        <Scene key='login' component={page.LoginPage} hideNavBar={true} hideTabBar={true} title='登录' type='reset' />
         <Scene key='main' tabs={true} type='replace'>
-          <Scene key='objectList' component={page.ObjectListPage} title='对象列表' icon={TabIcon} iconName='unie67e' activeIconName='unie67e' />
+          <Scene key='home' component={page.HomePage} title='对象列表' icon={TabIcon} iconName='unie67e' activeIconName='unie67e' />
           <Scene key='profile' component={page.ProfilePage} title='我' icon={TabIcon} iconName='unie67e' activeIconName='unie67e' />
         </Scene>
+        <Scene key='about' component={page.AboutPage} hideNavBar={false} hideTabBar={true} title='登录'/>
+        <Scene key='authHelp' component={page.AuthHelpPage} hideNavBar={false} hideTabBar={true} title='登录'/>
+        <Scene key='auth' component={page.AuthPage} hideNavBar={false} hideTabBar={true} title='登录' rightTitle='帮助' onRight={()=>Actions.authHelp()}/>
+        <Scene key='help' component={page.HelpPage} hideNavBar={false} hideTabBar={true} title='登录'/>
+        <Scene key='register' component={page.RegisterPage} hideNavBar={false} hideTabBar={true} title='登录'/>
+        <Scene key='resetPassword' component={page.ResetPasswordPage} hideNavBar={false} hideTabBar={true} title='登录'/>
       </ConnectedRouter>
     );
   }
