@@ -1,5 +1,9 @@
-import * as api from './api';
+import api from './api';
+import * as app from './app';
+import * as wilddog from './wilddog';
 
 export default {
-  ...api
+  ...api,
+  ...app,
+  ...wilddog
 }

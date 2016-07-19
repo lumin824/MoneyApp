@@ -10,6 +10,8 @@
     "lodash": "4.13.1",
     "react": "15.2.0",
     "react-native": "0.29.0",
+    "react-native-addressbook": "git+https://github.com/lumin824/react-native-addressbook.git",
+    "react-native-device": "git+https://github.com/lumin824/react-native-device.git",
     "react-native-router-flux": "3.30.8",
     "react-native-vector-icons": "2.0.3",
     "react-redux": "4.4.5",
@@ -18,6 +20,7 @@
     "redux-logger": "2.6.1",
     "redux-persist": "3.2.2",
     "redux-promise": "0.5.3",
-    "redux-thunk": "2.1.0"
+    "redux-thunk": "2.1.0",
+    "wilddog": "^0.7.2"
   }
 }

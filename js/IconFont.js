@@ -4,17 +4,21 @@
  */
 
 import { createIconSet } from 'react-native-vector-icons';
+
 const glyphMap = {
-  "unie67e": 58880,
-  "unie714": 58881,
-  "unie715": 58882,
-  "unie719": 58883,
-  "untitled7": 58884,
-  "unie91b": 58885,
-  "unie92d": 58886,
-  "unie915": 58887,
-  "untitled13": 58888,
-  "untitled14": 58889
+  "check": 58892,
+  "back": 58880,
+  "myfill": 58881,
+  "my": 58882,
+  "right": 58883,
+  "refund": 58891,
+  "home": 58884,
+  "homefill": 58885,
+  "selection": 58889,
+  "vipcard": 58890,
+  "searchlist": 58886,
+  "creative": 58887,
+  "sponsor": 58888
 };
 
 let IconFont = createIconSet(glyphMap, 'iconfont', 'iconfont.ttf');

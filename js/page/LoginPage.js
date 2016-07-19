@@ -14,8 +14,17 @@ import { Actions } from 'react-native-router-flux';
 import _find from 'lodash/find';
 
 import action from '../action';
+import { Tip } from '../component';
 
 class P extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      phone: props.phone,
+      password: props.password
+    };
+  }
 
   componentDidMount(){
 
@@ -25,32 +34,81 @@ class P extends Component {
 
   }
 
+  isDisabledSubmit(){
+    let { phone, password } = this.state;
+    return !phone || !password;
+  }
+
+  onPressSubmit(){
+    let { phone, password } = this.state;
+    this.props.action.memberLogin({
+      phone, password
+    }).then(action=>{
+      if(!action.error){ Actions.main() }
+      else{
+        this.setState({tip:action.payload.message});
+      }
+    });
+  }
+
   render(){
     return (
       <View style={{marginTop:100,flex:1}}>
 
-        <View style={{borderWidth:1, height:48}}>
-          <TextInput style={{flex:1}} placeholder='用户名' />
+        <View style={{alignItems:'center'}}>
+          <Text style={{fontSize:24}}>滴滴用钱</Text>
+        </View>
+        <View style={{
+            height:45,
+            borderWidth:1, borderBottomWidth:0, borderColor:'#888',
+            borderTopLeftRadius:5, borderTopRightRadius:5,
+            marginHorizontal:15,marginTop:15
+          }}>
+          <TextInput style={{
+              flex:1,
+              marginHorizontal:10,
+              backgroundColor:'transparent'
+            }} onChangeText={phone=>this.setState({phone})} value={this.state.phone} placeholder='请输入手机号' />
         </View>
 
-        <View style={{borderWidth:1, height:48}}>
-          <TextInput style={{flex:1}} placeholder='登录密码' />
+        <View style={{
+            height:45,
+            borderWidth:1, borderColor:'#888',
+            borderBottomLeftRadius:5, borderBottomRightRadius:5,
+            marginHorizontal:15
+          }}>
+          <TextInput style={{
+              flex:1,
+              marginHorizontal:10,
+              backgroundColor:'transparent'
+            }} onChangeText={password=>this.setState({password})} value={this.state.password} placeholder='请输入密码' secureTextEntry={true} />
         </View>
 
-        <View style={{flexDirection:'row'}}>
-          <TouchableOpacity onPress={Actions.register}>
-            <Text>注册帐号</Text>
+
+        <View style={{flexDirection:'row', height:45, marginHorizontal:15, marginTop:20}}>
+          <TouchableOpacity style={{
+              alignItems:'center', justifyContent:'center',
+            }} onPress={Actions.register}>
+            <Text style={{marginHorizontal:10}}>注册帐号</Text>
           </TouchableOpacity>
           <View style={{flex:1}} />
-          <TouchableOpacity onPress={Actions.resetPassword}>
-            <Text>忘记密码</Text>
+          <TouchableOpacity style={{
+              alignItems:'center', justifyContent:'center',
+            }} onPress={Actions.resetPassword}>
+            <Text style={{marginHorizontal:10}}>忘记密码</Text>
           </TouchableOpacity>
         </View>
+
+        <Tip msg={this.state.tip} />
+
         <TouchableOpacity style={{
-            height:48,
-            borderWidth:1,
-            alignItems:'center', justifyContent:'center'}} onPress={Actions.main}>
-          <Text>登录</Text>
+            height:45,
+            alignItems:'center', justifyContent:'center',
+            backgroundColor: this.isDisabledSubmit() ? '#888':'#18B4ED',
+            borderRadius:5,
+            marginHorizontal:15, marginTop:20,
+          }} onPress={this.onPressSubmit.bind(this)} disabled={this.isDisabledSubmit()}>
+          <Text style={{color:'#fff',fontSize:18}}>登录</Text>
         </TouchableOpacity>
       </View>
     );
@@ -58,9 +116,9 @@ class P extends Component {
 }
 
 export default connect(
-  state=>({
-  }),
+  state=>state.loginForm,
   dispatch=>({
     action: bindActionCreators({
+      memberLogin: action.memberLogin
     }, dispatch)})
 )(P);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import {
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native'
 
@@ -23,6 +24,18 @@ class TabIcon extends Component {
           </View>
         );
     }
+}
+
+class BackButton extends Component {
+  render(){
+    return (
+      <TouchableOpacity style={this.props.style} onPress={Actions.pop}>
+        <View style={{justifyContent:'center'}}>
+          <IconFont name='back' size={20} color='#fff' />
+        </View>
+      </TouchableOpacity>
+    );
+  }
 }
 
 const ConnectedRouter = connect()(Router);
@@ -48,18 +61,25 @@ class App extends Component {
     return (
       <ConnectedRouter
         getSceneStyle={getSceneStyle}
+        navigationBarStyle={{backgroundColor:'#18B4ED'}}
+        titleStyle={{color:'#fff'}}
         >
         <Scene key='login' component={page.LoginPage} hideNavBar={true} hideTabBar={true} title='登录' type='reset' />
         <Scene key='main' tabs={true} type='replace'>
-          <Scene key='home' component={page.HomePage} title='对象列表' icon={TabIcon} iconName='unie67e' activeIconName='unie67e' />
-          <Scene key='profile' component={page.ProfilePage} title='我' icon={TabIcon} iconName='unie67e' activeIconName='unie67e' />
+          <Scene key='home' component={page.HomePage} title='功能' icon={TabIcon} iconName='home' activeIconName='homefill' />
+          <Scene key='profile' component={page.ProfilePage} title='我的' icon={TabIcon} iconName='my' activeIconName='myfill' />
         </Scene>
-        <Scene key='about' component={page.AboutPage} hideNavBar={false} hideTabBar={true} title='登录'/>
+        <Scene key='about' component={page.AboutPage} hideNavBar={false} hideTabBar={true} title='关于' backButton={BackButton}/>
         <Scene key='authHelp' component={page.AuthHelpPage} hideNavBar={false} hideTabBar={true} title='登录'/>
         <Scene key='auth' component={page.AuthPage} hideNavBar={false} hideTabBar={true} title='登录' rightTitle='帮助' onRight={()=>Actions.authHelp()}/>
         <Scene key='help' component={page.HelpPage} hideNavBar={false} hideTabBar={true} title='登录'/>
-        <Scene key='register' component={page.RegisterPage} hideNavBar={false} hideTabBar={true} title='登录'/>
+        <Scene key='register' component={page.RegisterPage} hideNavBar={false} hideTabBar={true} title='注册' backButton={BackButton}/>
         <Scene key='resetPassword' component={page.ResetPasswordPage} hideNavBar={false} hideTabBar={true} title='登录'/>
+        <Scene key='moneyReq' component={page.MoneyReqPage} hideNavBar={false} hideTabBar={true} title='申请贷款' backButton={BackButton} />
+        <Scene key='moneyReqList' component={page.MoneyReqListPage} hideNavBar={false} hideTabBar={true} title='查询贷款' backButton={BackButton} />
+
+        <Scene key='inputStage' component={page.InputStagePage} hideNavBar={false} hideTabBar={true} title='申请金额' backButton={BackButton} />
+        <Scene key='inputMoney' component={page.InputMoneyPage} hideNavBar={false} hideTabBar={true} title='申请期数' backButton={BackButton} />
       </ConnectedRouter>
     );
   }
