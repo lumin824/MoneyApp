@@ -1,6 +1,7 @@
 package com.moneyapp;
 
 import com.facebook.react.ReactActivity;
+import com.imagepicker.ImagePickerPackage;
 import com.lumin824.device.DevicePackage;
 import com.lumin824.addressbook.AddressBookPackage;
 import com.oblador.vectoricons.VectorIconsPackage;

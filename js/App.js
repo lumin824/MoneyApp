@@ -71,15 +71,15 @@ class App extends Component {
         </Scene>
         <Scene key='about' component={page.AboutPage} hideNavBar={false} hideTabBar={true} title='关于' backButton={BackButton}/>
         <Scene key='authHelp' component={page.AuthHelpPage} hideNavBar={false} hideTabBar={true} title='登录'/>
-        <Scene key='auth' component={page.AuthPage} hideNavBar={false} hideTabBar={true} title='登录' rightTitle='帮助' onRight={()=>Actions.authHelp()}/>
+        <Scene key='realNameAuth' component={page.RealNameAuthPage} hideNavBar={false} hideTabBar={true} title='实名认证' backButton={BackButton} />
         <Scene key='help' component={page.HelpPage} hideNavBar={false} hideTabBar={true} title='登录'/>
         <Scene key='register' component={page.RegisterPage} hideNavBar={false} hideTabBar={true} title='注册' backButton={BackButton}/>
         <Scene key='resetPassword' component={page.ResetPasswordPage} hideNavBar={false} hideTabBar={true} title='登录'/>
         <Scene key='moneyReq' component={page.MoneyReqPage} hideNavBar={false} hideTabBar={true} title='申请贷款' backButton={BackButton} />
         <Scene key='moneyReqList' component={page.MoneyReqListPage} hideNavBar={false} hideTabBar={true} title='查询贷款' backButton={BackButton} />
 
-        <Scene key='inputStage' component={page.InputStagePage} hideNavBar={false} hideTabBar={true} title='申请金额' backButton={BackButton} />
-        <Scene key='inputMoney' component={page.InputMoneyPage} hideNavBar={false} hideTabBar={true} title='申请期数' backButton={BackButton} />
+        <Scene key='inputStage' component={page.InputStagePage} hideNavBar={false} hideTabBar={true} title='申请期数' backButton={BackButton} />
+        <Scene key='inputMoney' component={page.InputMoneyPage} hideNavBar={false} hideTabBar={true} title='申请金额' backButton={BackButton} />
       </ConnectedRouter>
     );
   }

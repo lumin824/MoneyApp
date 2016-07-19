@@ -1,7 +1,7 @@
 
 import AboutPage from './AboutPage';
 import AuthHelpPage from './AuthHelpPage';
-import AuthPage from './AuthPage';
+import RealNameAuthPage from './RealNameAuthPage';
 import HelpPage from './HelpPage';
 
 import LoginPage from './LoginPage';
@@ -20,7 +20,7 @@ import InputMoneyPage from './InputMoneyPage';
 export {
   AboutPage,
   AuthHelpPage,
-  AuthPage,
+  RealNameAuthPage,
   HelpPage,
   LoginPage,
   HomePage,

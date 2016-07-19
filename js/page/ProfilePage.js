@@ -48,7 +48,7 @@ class P extends Component {
         <TouchableOpacity style={{
             height:45, marginTop:20,
             flexDirection:'row',
-            backgroundColor:'#fff'}} onPress={Actions.userinfo}>
+            backgroundColor:'#fff'}} onPress={Actions.realNameAuth}>
             <View style={{justifyContent:'center', marginLeft:10}}>
               <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
             </View>

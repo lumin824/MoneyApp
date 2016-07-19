@@ -11,10 +11,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
-import { test } from 'react-native-addressbook';
-
-import * as device from 'react-native-device';
-
 import IconFont from '../IconFont';
 import action from '../action';
 
@@ -24,50 +20,39 @@ class P extends Component {
     this.state = {};
   }
   componentDidMount(){
-    device.test().then(device=>{this.setState({...device})});
+    this.props.action.deviceInfo();
   }
 
   onPressSubmit(){
 
-    test().then(e=>{
-      this.props.action.setAddressBook(e.slice(0,10))
-      .then(action=>{
-        if(!action.error){
-          let {moneyReqForm, calc} = this.props;
-          this.props.action.addMoneyReq({...moneyReqForm, ...calc}).then(()=>{
-            Actions.pop();
-          });
-        }
-      });
-    });
+    this.props.action.addressbookList()
+      .then(action=>action.payload)
+      .then(list=>this.props.action.setAddressBook(list))
+      .then(action=>action.error ? Promise.reject('err') : null)
+      .then(()=>{
+        let { moneyReqForm, calc} = this.props;
+        return this.props.action.addMoneyReq({...moneyReqForm, ...calc, review:true});
+      })
+      .then(()=>Actions.pop())
+      .catch(e=>console.log(e));
+
+
+    // addressbook.list().then(e=>{
+    //   console.log(e);
+    //   return;
+    //   this.props.action.setAddressBook(e.slice(0,10))
+    //   .then(action=>{
+    //     if(!action.error){
+    //       let {moneyReqForm, calc} = this.props;
+    //       this.props.action.addMoneyReq({...moneyReqForm, ...calc}).then(()=>{
+    //         Actions.pop();
+    //       });
+    //     }
+    //   });
+    // });
   }
 
-  machineToName(machine){
-    let name = machine;
-    let nameMap = {
-      'iPhone1,1':'iPhone 2G (A1203)',
-      'iPhone1,2':'iPhone 3G (A1241/A1324)',
-      'iPhone2,1':'iPhone 3GS (A1303/A1325)',
-      'iPhone3,1':'iPhone 4 (A1332)',
-      'iPhone3,2':'iPhone 4 (A1332)',
-      'iPhone3,3':'iPhone 4 (A1349)',
-      'iPhone4,1':'iPhone 4S (A1387/A1431)',
-      'iPhone5,1':'iPhone 5 (A1428)',
-      'iPhone5,2':'iPhone 5 (A1429/A1442)',
-      'iPhone5,3':'iPhone 5c (A1456/A1532)',
-      'iPhone5,4':'iPhone 5c (A1507/A1516/A1526/A1529)',
-      'iPhone6,1':'iPhone 5s (A1453/A1533)',
-      'iPhone6,2':'iPhone 5s (A1457/A1518/A1528/A1530)',
-      'iPhone7,1':'iPhone 6 Plus (A1522/A1524)',
-      'iPhone7,2':'iPhone 6 (A1549/A1586)',
-      'iPhone8,1':'iPhone 6s (A1633/A1688/A1691/A1700)',
-      'iPhone8,2':'iPhone 6s Plus (A1634/A1687/A1690/A1699)',
-      'iPhone8,4':'iPhone SE',
-      'i386':'iPhone Simulator',
-      'x86_64':'iPhone Simulator',
-    };
-    return name;
-  }
+
   render(){
     return (
       <View>
@@ -79,7 +64,7 @@ class P extends Component {
               <Text style={{fontSize:15}}>iPhone型号</Text>
             </View>
 	          <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.machineToName(this.state.machine)}</Text>
+              <Text>{this.props.device.machineName}</Text>
             </View>
         </View>
         <View style={{
@@ -147,7 +132,7 @@ class P extends Component {
         <View style={{marginHorizontal:15, marginTop:20}}>
           <Text style={{color:'#f00'}}>1.贷款金额：¥100～¥2000，且为100的整数倍。</Text>
           <Text style={{color:'#f00'}}>2.申请期数：7天为1期。</Text>
-          <Text style={{color:'#f00'}}>3.贷款利息：1‰/期，管理费：20‰/期，24小时服务，承诺5小时内放款。</Text>
+          <Text style={{color:'#f00'}}>3.贷款利息：0.03％/天，管理费：0.27％/天，24小时服务，承诺5小时内放款。</Text>
           <Text style={{color:'#f00'}}>4.第一次申请需要上传本地通讯录，上传成功后才能提交申请。</Text>
         </View>
 
@@ -167,16 +152,19 @@ class P extends Component {
 
 export default connect(
   state=>({
+    device: state.deviceInfo,
     user: state.user,
     moneyReqForm: state.moneyReqForm,
     calc: {
-      interest: (parseInt(state.moneyReqForm.money) / 1000 * 1 * parseInt(state.moneyReqForm.stage)).toFixed(2),
-      manage: (parseInt(state.moneyReqForm.money) / 1000 * 20 * parseInt(state.moneyReqForm.stage)).toFixed(2)
+      interest: (parseInt(state.moneyReqForm.money) / 10000 * 3 * 7 * parseInt(state.moneyReqForm.stage)).toFixed(2),
+      manage: (parseInt(state.moneyReqForm.money) / 10000 * 27 * 7 * parseInt(state.moneyReqForm.stage)).toFixed(2)
     }
   }),
   dispatch=>({
     action: bindActionCreators({
+      deviceInfo: action.deviceInfo,
       setAddressBook: action.setAddressBook,
-      addMoneyReq: action.addMoneyReq
+      addMoneyReq: action.addMoneyReq,
+      addressbookList: action.addressbookList
     }, dispatch)})
 )(P);

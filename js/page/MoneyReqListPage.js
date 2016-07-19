@@ -38,7 +38,7 @@ class P extends Component {
                     <Text style={{fontSize:12, color:'#888'}}>利息:¥{o.interest} 管理费:¥{o.manage}</Text>
                   </View>
                   <View style={{justifyContent:'center', marginRight:5}}>
-                    <Text>待审核</Text>
+                    <Text>{o.review ? '已审核':'待审核'}</Text>
                   </View>
                   <View style={{justifyContent:'center', marginRight:15}}>
                     <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
