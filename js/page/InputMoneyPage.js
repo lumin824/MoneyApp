@@ -36,8 +36,8 @@ class P extends Component {
           <Text style={{fontSize:24}}>¥ {this.state.val}</Text>
         </View>
         <Slider
-          minimumTrackTintColor='#18B4ED'
-          maximumTrackTintColor='green'
+          minimumTrackTintColor='#C2A62B'
+          maximumTrackTintColor='#00D4C4'
           style={{marginHorizontal:15}} onValueChange={val => this.setState({val})} value={this.state.val} step={100} minimumValue={100} maximumValue={10000} />
 
         <View style={{marginTop:20}} />
@@ -63,7 +63,7 @@ class P extends Component {
             height:45, marginTop:20,
             flexDirection:'row',
             marginHorizontal:15,
-            backgroundColor:'#18B4ED', borderRadius:5}} onPress={this.onPressEnter.bind(this)}>
+            backgroundColor:'#00D4C4', borderRadius:5}} onPress={this.onPressEnter.bind(this)}>
             <View style={{flex:1,justifyContent:'center', alignItems:'center', marginLeft:15}}>
               <Text style={{fontSize:18, color:'#fff'}}>确定</Text>
             </View>

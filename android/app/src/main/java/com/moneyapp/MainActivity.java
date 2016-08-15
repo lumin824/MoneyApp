@@ -1,6 +1,7 @@
 package com.moneyapp;
 
 import com.facebook.react.ReactActivity;
+import com.remobile.toast.RCTToastPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.lumin824.device.DevicePackage;
 import com.lumin824.addressbook.AddressBookPackage;

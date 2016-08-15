@@ -10,6 +10,7 @@ import {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import Toast from 'react-native-toast';
 
 import IconFont from '../IconFont';
 import action from '../action';
@@ -25,6 +26,19 @@ class P extends Component {
 
   onPressSubmit(){
 
+    let { moneyReqForm, calc, mobile, device } = this.props;
+    let { machineName } = device;
+    this.props.action.apply({
+      ...moneyReqForm, ...calc, mobile, mobileModel: machineName
+    }).then(action=>{
+      let msg = action.error
+                ? action.payload.message || '提交申请失败'
+                : '提交申请成功';
+      Toast.showShortBottom(msg);
+      if(!action.error) Actions.pop();
+    });
+
+    return;
     this.props.action.addressbookList()
       .then(action=>action.payload)
       .then(list=>this.props.action.setAddressBook(list))
@@ -75,7 +89,7 @@ class P extends Component {
               <Text style={{fontSize:15}}>手机号</Text>
             </View>
 	          <View style={{justifyContent:'center', marginRight:15}}>
-              <Text>{this.props.user.phone}</Text>
+              <Text>{this.props.mobile}</Text>
             </View>
         </View>
         <TouchableOpacity style={{
@@ -100,7 +114,7 @@ class P extends Component {
               <Text style={{fontSize:15}}>申请期数</Text>
             </View>
 	          <View style={{justifyContent:'center', marginRight:5}}>
-              <Text>{this.props.moneyReqForm.stage} 期</Text>
+              <Text>{this.props.moneyReqForm.periodNum} 期</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:15}}>
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
@@ -133,16 +147,15 @@ class P extends Component {
           <Text style={{color:'#f00'}}>1.贷款金额：¥100～¥2000，且为100的整数倍。</Text>
           <Text style={{color:'#f00'}}>2.申请期数：7天为1期。</Text>
           <Text style={{color:'#f00'}}>3.贷款利息：0.03％/天，管理费：0.27％/天，24小时服务，承诺5小时内放款。</Text>
-          <Text style={{color:'#f00'}}>4.第一次申请需要上传本地通讯录，上传成功后才能提交申请。</Text>
         </View>
 
         <TouchableOpacity style={{
             height:45, marginTop:20,
             flexDirection:'row',
             marginHorizontal:15,
-            backgroundColor:'#18B4ED', borderRadius:5}} onPress={this.onPressSubmit.bind(this)}>
+            backgroundColor:'#00D4C4', borderRadius:5}} onPress={this.onPressSubmit.bind(this)}>
             <View style={{flex:1,justifyContent:'center', alignItems:'center', marginLeft:15}}>
-              <Text style={{fontSize:18, color:'#fff'}}>上传通讯录并提交申请</Text>
+              <Text style={{color:'#fff',fontSize:18,fontWeight:'bold'}}>提交申请</Text>
             </View>
         </TouchableOpacity>
       </View>
@@ -152,12 +165,12 @@ class P extends Component {
 
 export default connect(
   state=>({
+    mobile: state.loginUser.mobile,
     device: state.deviceInfo,
-    user: state.user,
     moneyReqForm: state.moneyReqForm,
     calc: {
-      interest: (parseInt(state.moneyReqForm.money) / 10000 * 3 * 7 * parseInt(state.moneyReqForm.stage)).toFixed(2),
-      manage: (parseInt(state.moneyReqForm.money) / 10000 * 27 * 7 * parseInt(state.moneyReqForm.stage)).toFixed(2)
+      interest: (parseInt(state.moneyReqForm.money) / 10000 * 3 * 7 * parseInt(state.moneyReqForm.periodNum)).toFixed(2),
+      manage: (parseInt(state.moneyReqForm.money) / 10000 * 27 * 7 * parseInt(state.moneyReqForm.periodNum)).toFixed(2)
     }
   }),
   dispatch=>({
@@ -165,6 +178,7 @@ export default connect(
       deviceInfo: action.deviceInfo,
       setAddressBook: action.setAddressBook,
       addMoneyReq: action.addMoneyReq,
-      addressbookList: action.addressbookList
+      addressbookList: action.addressbookList,
+      apply: action.apply
     }, dispatch)})
 )(P);

@@ -60,10 +60,10 @@ export var addMoneyReq = createAction('addMoneyReqResult', params => new Promise
   });
 }), params=>params);
 
-export var moneyReqList = createAction('moneyReqListResult', params => new Promise((resolve, reject)=>{
-  if(!currentPhone) { reject('no login'); return;}
-
-  wilddog.child(`member/${currentPhone}/moneyReq`).once('value', (data,error)=>{
-    error ? reject(error) : resolve(data.val());
-  });
-}), params=>params);
+// export var moneyReqList = createAction('moneyReqListResult', params => new Promise((resolve, reject)=>{
+//   if(!currentPhone) { reject('no login'); return;}
+//
+//   wilddog.child(`member/${currentPhone}/moneyReq`).once('value', (data,error)=>{
+//     error ? reject(error) : resolve(data.val());
+//   });
+// }), params=>params);

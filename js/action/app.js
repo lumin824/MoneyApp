@@ -17,7 +17,9 @@ export var imagePicker = createAction('imagePicker', params=>new Promise((resolv
   ImagePicker.showImagePicker({
     title:'请选择',
     takePhotoButtonTitle:'用照相机拍照',
-    chooseFromLibraryButtonTitle:'',
+    chooseFromLibraryButtonTitle:'1111',
     cancelButtonTitle:'取消'
-  },(e)=>e.uri?resolve(e.uri):reject('cancel'));
+  },(e)=>{console.log(e);e.uri?resolve(e.uri):reject('cancel')});
 }));
+
+export var selectMoneyReq = createAction('selectMoneyReq');

@@ -1,14 +1,26 @@
 import { createAction } from 'redux-actions';
 
+import { Actions } from 'react-native-router-flux';
+
 import mapValues from 'lodash/mapValues';
 import forEach from 'lodash/forEach';
 
-let httpServer = 'http://localhost:8080/api/v1/';
+//let httpServer = 'http://www.tdong.cn:8080/api/';
+
+let httpServer = 'http://221.231.6.51:81/api/';
+
 let httpApiList = {
-  'smsCode': {url:'sms-code', jsonBody:true},
-  //'memberReg': {url:'member-reg', jsonBody:true},
-  //'memberLogin': 'member-login',
-  'memberAuth': 'member-auth',
+  'mobileCode': {url:'mobileCode'},
+  'register': {url:'register'},
+  'login': {url:'login',obtainToken:true},
+  'identification':{url:'admin/user/identification',withToken:true},
+  'apply': {url:'admin/loan/apply', withToken:true},
+  'applyList': {url:'admin/loan/applyList', withToken:true},
+  'userInfo': {url:'admin/user/info', withToken:true},
+  'uploadImage': {url:'admin/user/uploadImage', withToken:true},
+
+  'moneyReq': 'moneyReq',
+  'moneyReqList': 'moneyReqList',
   'memberAuthList': 'member-auth-list',
   'productList': 'product-list',
   'productBuy': 'product-buy',
@@ -37,15 +49,26 @@ var httpActions = mapValues(httpApiList, (actionConfig, actionName) => {
         forEach(params, (o, k)=>{ body.append(k,o || '')});
       }
 
-      console.log(body);
-
       let headers = { ...defaultHeader };
       if(actionConfig.headers) headers = {...actionConfig.headers};
 
+      if(actionConfig.withToken) headers['X-Auth-Token'] = token;
       return fetch(`${httpServer}${url}`, {body,method:'POST',headers})
-      .then(response=>{console.log(response);return response;})
-      .then(response=>response.status == '200' ? response.text(): Promise.reject(response.json()))
+      // .then(response=>{
+      //   let text = response.text();
+      //   console.log(text);
+      //   return response.status == '200' ? text: Promise.reject(text)
+      // })
+      .then(response => response.text())
       .then(text=>{console.log(text);let json = JSON.parse(text); return json;})
+      .then(json=>{
+        if(!json.success){
+          //if(json.status == 200) Actions.login();
+          return Promise.reject(new Error(json.message));
+        }
+        if(actionConfig.obtainToken) token = json.info.token;
+        return json.info;
+      });
     }, params=>params
   );
 

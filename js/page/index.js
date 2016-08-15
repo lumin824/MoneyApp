@@ -12,10 +12,13 @@ import ResetPasswordPage from './ResetPasswordPage';
 
 import MoneyReqPage from './MoneyReqPage';
 import MoneyReqListPage from './MoneyReqListPage';
+import MoneyReqDetailPage from './MoneyReqDetailPage';
 
 import InputStagePage from './InputStagePage';
 import InputMoneyPage from './InputMoneyPage';
 
+import HelpBindICloudPage from './HelpBindICloudPage';
+import HelpFlowPage from './HelpFlowPage';
 
 export {
   AboutPage,
@@ -30,7 +33,11 @@ export {
 
   MoneyReqPage,
   MoneyReqListPage,
+  MoneyReqDetailPage,
 
   InputStagePage,
   InputMoneyPage,
+
+  HelpBindICloudPage,
+  HelpFlowPage,
 };

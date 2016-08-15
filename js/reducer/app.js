@@ -1,7 +1,6 @@
 import { handleActions } from 'redux-actions';
 
 let machineToName = (machine) => {
-  let name = machine;
   let nameMap = {
     'iPhone1,1':'iPhone 2G (A1203)',
     'iPhone1,2':'iPhone 3G (A1241/A1324)',
@@ -24,9 +23,15 @@ let machineToName = (machine) => {
     'i386':'iPhone Simulator',
     'x86_64':'iPhone Simulator',
   };
-  return name;
+  return nameMap[machine] || machine;
 }
 
 export var deviceInfo = handleActions({
   'deviceInfo': (state, action) => ({...action.payload, machineName:machineToName(action.payload.machine)})
 },{});
+
+export var authForm = handleActions({
+
+},{
+  
+})

@@ -91,7 +91,7 @@ class P extends Component {
 
         </View>
         <View style={{margin:15}}>
-          <Text style={{fontSize:16,color:'#18B4ED'}}>滴滴用钱</Text>
+          <Text style={{fontSize:16,color:'#00D4C4'}}>千迅金融</Text>
           <Text style={{lineHeight:20, marginTop:3}}>1.年满18周岁，iPhone型号为5s及以上，已实名认证且已绑定银行卡的用户可申请。</Text>
           <Text style={{lineHeight:20, marginTop:3}}>2.本产品是抵押iPhone进行贷款，根据手机型号将有不同的借款金额。</Text>
           <Text style={{lineHeight:20, marginTop:3}}>3.用户若违约，本公司有权对用户iPhone进行任何处置。</Text>

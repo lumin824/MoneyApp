@@ -18,71 +18,108 @@ class P extends Component {
   render(){
     return (
       <ScrollView>
-        <TouchableOpacity style={{
-            height:80, marginTop:20,
-            flexDirection:'row',
-            backgroundColor:'#fff'}} onPress={Actions.auth}>
-            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{flex:1,fontSize:16,color:'#000', marginTop:20}}>{this.props.phone}</Text>
-            </View>
-	          <View style={{justifyContent:'center', marginRight:15}}>
-              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
-            </View>
-        </TouchableOpacity>
-        <View style={{flexDirection:'row',marginTop:20, height:80}}>
-          <TouchableOpacity style={{
-              flex:1, alignItems:'center',
-              backgroundColor:'#fff'}} onPress={Actions.auth}>
-              <Text style={{flex:1,fontSize:16,color:'#000', marginTop:20}}>最大额度</Text>
-              <Text style={{fontSize:14,color:'#888', marginBottom:20}}>¥10000</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{
-              flex:1, alignItems:'center', marginLeft:1,
-              backgroundColor:'#fff'}} onPress={Actions.auth}>
-              <Text style={{flex:1,fontSize:16,color:'#000', marginTop:20}}>已使用</Text>
-              <Text style={{fontSize:14,color:'#888', marginBottom:20}}>¥2000</Text>
-          </TouchableOpacity>
-        </View>
 
         <TouchableOpacity style={{
-            height:45, marginTop:20,
+            height:45,marginTop:20,
             flexDirection:'row',
             backgroundColor:'#fff'}} onPress={Actions.realNameAuth}>
             <View style={{justifyContent:'center', marginLeft:10}}>
               <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
             </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>实名认证 </Text>
+              <Text style={{fontSize:15}}>个人信息</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:5}}>
-              <Text style={{fontSize:12,color:'#888'}}>可提高最大额度 ¥5000</Text>
+              <Text style={{fontSize:12,color:'#888'}}>{this.props.user.mobile}</Text>
             </View>
 	          <View style={{justifyContent:'center', marginRight:15}}>
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
+
         <TouchableOpacity style={{
-            height:45, marginTop:1,
+            height:45,marginTop:20,
             flexDirection:'row',
-            backgroundColor:'#fff'}} onPress={Actions.userinfo}>
+            backgroundColor:'#fff'}} onPress={Actions.realNameAuth}>
             <View style={{justifyContent:'center', marginLeft:10}}>
               <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
             </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>上传通讯录</Text>
+              <Text style={{fontSize:15}}>实名认证</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:5}}>
-              <Text style={{fontSize:12,color:'#888'}}>可提高最大额度 ¥3000</Text>
+              <Text style={{fontSize:12,color:'#888'}}>
+                {function(type, msg){
+                  switch(type){
+                    case '0': return '点击认证';
+                    case '1': return '审核中';
+                    case '2': return '已认证';
+                    case '3': return '重新认证';
+                  }
+                  return <Text>{type}</Text>
+                }(this.props.user.identification)}
+              </Text>
             </View>
 	          <View style={{justifyContent:'center', marginRight:15}}>
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
         <TouchableOpacity style={{
-            height:45, marginTop:1,
+            height:45,marginTop:1,
             flexDirection:'row',
-            backgroundColor:'#fff'}} onPress={Actions.userinfo}>
+            backgroundColor:'#fff'}}>
+            <View style={{justifyContent:'center', marginLeft:10}}>
+              <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>通讯录认证</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:5}}>
+              <Text style={{fontSize:12,color:'#888'}}>开发中</Text>
+            </View>
+	          <View style={{justifyContent:'center', marginRight:15}}>
+              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
+            </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+            height:45,marginTop:20,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{justifyContent:'center', marginLeft:10}}>
+              <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>绑定微信</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:5}}>
+              <Text style={{fontSize:12,color:'#888'}}>开发中</Text>
+            </View>
+	          <View style={{justifyContent:'center', marginRight:15}}>
+              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
+            </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={{
+            height:45,marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
+            <View style={{justifyContent:'center', marginLeft:10}}>
+              <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>绑定支付宝</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:5}}>
+              <Text style={{fontSize:12,color:'#888'}}>开发中</Text>
+            </View>
+	          <View style={{justifyContent:'center', marginRight:15}}>
+              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
+            </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={{
+            height:45,marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}}>
             <View style={{justifyContent:'center', marginLeft:10}}>
               <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
             </View>
@@ -90,39 +127,7 @@ class P extends Component {
               <Text style={{fontSize:15}}>绑定银行卡</Text>
             </View>
             <View style={{justifyContent:'center', marginRight:5}}>
-              <Text style={{fontSize:12,color:'#888'}}>可提高最大额度 ¥2000</Text>
-            </View>
-	          <View style={{justifyContent:'center', marginRight:15}}>
-              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
-            </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={{
-            height:45, marginTop:1,
-            flexDirection:'row',
-            backgroundColor:'#fff'}} onPress={Actions.userinfo}>
-            <View style={{justifyContent:'center', marginLeft:10}}>
-              <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
-            </View>
-            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>绑定微信号</Text>
-            </View>
-            <View style={{justifyContent:'center', marginRight:5}}>
-              <Text style={{fontSize:12,color:'#888'}}>可提高最大额度 ¥1000</Text>
-            </View>
-	          <View style={{justifyContent:'center', marginRight:15}}>
-              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
-            </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={{
-            height:45, marginTop:20,
-            flexDirection:'row',
-            backgroundColor:'#fff'}} onPress={Actions.userinfo}>
-            <View style={{justifyContent:'center', marginLeft:10}}>
-              <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
-            </View>
-            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>银行卡</Text>
+              <Text style={{fontSize:12,color:'#888'}}>开发中</Text>
             </View>
 	          <View style={{justifyContent:'center', marginRight:15}}>
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
@@ -159,5 +164,7 @@ class P extends Component {
 }
 
 export default connect(
-  state=>state.loginForm
+  state=>({
+    user:state.loginUser
+  })
 )(P);

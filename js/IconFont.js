@@ -14,10 +14,12 @@ const glyphMap = {
   "refund": 58891,
   "home": 58884,
   "homefill": 58885,
+  "lock": 58893,
   "selection": 58889,
   "vipcard": 58890,
   "searchlist": 58886,
   "creative": 58887,
+  "people": 58894,
   "sponsor": 58888
 };
 
