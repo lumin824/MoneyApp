@@ -104,11 +104,14 @@ class P extends Component {
               <Text style={{marginHorizontal:10, fontSize:16, color:'#fff'}}>注册帐号</Text>
             </TouchableOpacity>
             <View style={{flex:1}} />
-            <TouchableOpacity style={{
-                alignItems:'center', justifyContent:'center',
-              }} onPress={Actions.resetPassword}>
-              <Text style={{color:'#fff', marginHorizontal:10, fontSize:16}}>忘记密码</Text>
-            </TouchableOpacity>
+            {null && (
+              <TouchableOpacity style={{
+                  alignItems:'center', justifyContent:'center',
+                }} onPress={Actions.resetPassword}>
+                <Text style={{color:'#fff', marginHorizontal:10, fontSize:16}}>忘记密码</Text>
+              </TouchableOpacity>
+            )}
+
           </View>
 
           <TouchableOpacity style={{

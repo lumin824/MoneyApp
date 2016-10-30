@@ -446,7 +446,7 @@
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = QENNL5X5B4;
+						DevelopmentTeam = 7XXP872T9R;
 					};
 				};
 			};
@@ -717,6 +717,7 @@
 					"$(SRCROOT)/../node_modules/react-native-toast/ios/RCTToast",
 				);
 				INFOPLIST_FILE = MoneyApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -730,7 +731,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.crabmake.money;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crabmake.81dai;
 				PRODUCT_NAME = MoneyApp;
 				PROVISIONING_PROFILE = "";
 			};
@@ -751,6 +752,7 @@
 					"$(SRCROOT)/../node_modules/react-native-toast/ios/RCTToast",
 				);
 				INFOPLIST_FILE = MoneyApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -764,7 +766,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.crabmake.money;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crabmake.81dai;
 				PRODUCT_NAME = MoneyApp;
 				PROVISIONING_PROFILE = "";
 			};

@@ -22,15 +22,29 @@ class P extends Component {
         <TouchableOpacity style={{
             height:45,marginTop:20,
             flexDirection:'row',
-            backgroundColor:'#fff'}} onPress={Actions.realNameAuth}>
+            backgroundColor:'#fff'}}>
             <View style={{justifyContent:'center', marginLeft:10}}>
               <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
             </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>个人信息</Text>
             </View>
-            <View style={{justifyContent:'center', marginRight:5}}>
+            <View style={{justifyContent:'center', marginRight:15}}>
               <Text style={{fontSize:12,color:'#888'}}>{this.props.user.mobile}</Text>
+            </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={{
+            height:45,marginTop:1,
+            flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={()=>Actions.qrCode()}>
+            <View style={{justifyContent:'center', marginLeft:10}}>
+              <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
+            </View>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>我的二维码</Text>
+            </View>
+            <View style={{justifyContent:'center', marginRight:5}}>
+              <Text style={{fontSize:12,color:'#888'}}>点击查看</Text>
             </View>
 	          <View style={{justifyContent:'center', marginRight:15}}>
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
@@ -64,24 +78,27 @@ class P extends Component {
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
-        <TouchableOpacity style={{
-            height:45,marginTop:1,
-            flexDirection:'row',
-            backgroundColor:'#fff'}}>
-            <View style={{justifyContent:'center', marginLeft:10}}>
-              <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
-            </View>
-            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
-              <Text style={{fontSize:15}}>通讯录认证</Text>
-            </View>
-            <View style={{justifyContent:'center', marginRight:5}}>
-              <Text style={{fontSize:12,color:'#888'}}>开发中</Text>
-            </View>
-	          <View style={{justifyContent:'center', marginRight:15}}>
-              <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
-            </View>
-        </TouchableOpacity>
+        {null && (
+          <TouchableOpacity style={{
+              height:45,marginTop:1,
+              flexDirection:'row',
+              backgroundColor:'#fff'}}>
+              <View style={{justifyContent:'center', marginLeft:10}}>
+                <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
+              </View>
+              <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+                <Text style={{fontSize:15}}>通讯录认证</Text>
+              </View>
+              <View style={{justifyContent:'center', marginRight:5}}>
+                <Text style={{fontSize:12,color:'#888'}}>开发中</Text>
+              </View>
+  	          <View style={{justifyContent:'center', marginRight:15}}>
+                <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
+              </View>
+          </TouchableOpacity>
+        )}
 
+        {null && (
         <TouchableOpacity style={{
             height:45,marginTop:20,
             flexDirection:'row',
@@ -99,6 +116,8 @@ class P extends Component {
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
+        )}
+        {null && (
         <TouchableOpacity style={{
             height:45,marginTop:1,
             flexDirection:'row',
@@ -116,18 +135,16 @@ class P extends Component {
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />
             </View>
         </TouchableOpacity>
+        )}
         <TouchableOpacity style={{
             height:45,marginTop:1,
             flexDirection:'row',
-            backgroundColor:'#fff'}}>
+            backgroundColor:'#fff'}} onPress={()=>Actions.bankCardList()}>
             <View style={{justifyContent:'center', marginLeft:10}}>
               <IconFont name="vipcard" style={{backgroundColor:'transparent'}} size={20} color="#BABABA" />
             </View>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>绑定银行卡</Text>
-            </View>
-            <View style={{justifyContent:'center', marginRight:5}}>
-              <Text style={{fontSize:12,color:'#888'}}>开发中</Text>
             </View>
 	          <View style={{justifyContent:'center', marginRight:15}}>
               <IconFont name='right' style={{backgroundColor:'transparent'}} size={20} color='#7F7F7F' />

@@ -20,6 +20,13 @@ import InputMoneyPage from './InputMoneyPage';
 import HelpBindICloudPage from './HelpBindICloudPage';
 import HelpFlowPage from './HelpFlowPage';
 
+import BankCardListPage from './BankCardListPage';
+import BankCardPage from './BankCardPage';
+import InputBankTypePage from './InputBankTypePage';
+import InputBankCardPage from './InputBankCardPage';
+
+import QRCodePage from './QRCodePage';
+
 export {
   AboutPage,
   AuthHelpPage,
@@ -40,4 +47,11 @@ export {
 
   HelpBindICloudPage,
   HelpFlowPage,
+
+  BankCardPage,
+  BankCardListPage,
+  InputBankTypePage,
+  InputBankCardPage,
+
+  QRCodePage,
 };

@@ -1,5 +1,7 @@
 import { handleActions } from 'redux-actions';
 
+import * as cfg from '../config';
+
 let machineToName = (machine) => {
   let nameMap = {
     'iPhone1,1':'iPhone 2G (A1203)',
@@ -33,5 +35,23 @@ export var deviceInfo = handleActions({
 export var authForm = handleActions({
 
 },{
-  
+
 })
+
+export const bankList = handleActions({
+  'bankListResult': (state, action) => (action.error ? state : {...state, list:action.payload})
+},{
+  list:[]
+});
+
+export const bankForm = handleActions({
+  'updateBankForm': (state, action) => ({...state, ...action.payload})
+},{});
+
+export const bankCardList = handleActions({
+  'bankCardListResult': (state, action) => (action.error ? state : {...state, list:action.payload})
+},{
+  list:[]
+})
+
+export const config = handleActions({},cfg);

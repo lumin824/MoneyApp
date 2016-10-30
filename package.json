@@ -13,6 +13,7 @@
     "react-native-addressbook": "git+https://github.com/lumin824/react-native-addressbook.git",
     "react-native-device": "git+https://github.com/lumin824/react-native-device.git",
     "react-native-image-picker": "0.20.2",
+    "react-native-qrcode": "^0.2.2",
     "react-native-router-flux": "3.30.8",
     "react-native-toast": "^1.0.1",
     "react-native-vector-icons": "2.0.3",

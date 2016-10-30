@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import Toast from 'react-native-toast';
 
+import _find from 'lodash/find';
+
 import IconFont from '../IconFont';
 import action from '../action';
 
@@ -95,6 +97,17 @@ class P extends Component {
         <TouchableOpacity style={{
             height:45, marginTop:1,
             flexDirection:'row',
+            backgroundColor:'#fff'}} onPress={Actions.inputBankCard}>
+            <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
+              <Text style={{fontSize:15}}>银行卡</Text>
+            </View>
+	          <View style={{justifyContent:'center', marginRight:15}}>
+              <Text>{this.props.bankCard ? this.props.bankCard.account : '请选择银行卡'}</Text>
+            </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={{
+            height:45, marginTop:1,
+            flexDirection:'row',
             backgroundColor:'#fff'}} onPress={Actions.inputMoney}>
             <View style={{flex:1,justifyContent:'center', marginLeft:15}}>
               <Text style={{fontSize:15}}>申请金额</Text>
@@ -164,15 +177,19 @@ class P extends Component {
 }
 
 export default connect(
-  state=>({
-    mobile: state.loginUser.mobile,
-    device: state.deviceInfo,
-    moneyReqForm: state.moneyReqForm,
-    calc: {
-      interest: (parseInt(state.moneyReqForm.money) / 10000 * 3 * 7 * parseInt(state.moneyReqForm.periodNum)).toFixed(2),
-      manage: (parseInt(state.moneyReqForm.money) / 10000 * 27 * 7 * parseInt(state.moneyReqForm.periodNum)).toFixed(2)
-    }
-  }),
+  state=>{
+    let bankCard = _find(state.bankCardList.list, {id:state.moneyReqForm.bankId});
+    return {
+      bankCard: bankCard,
+      mobile: state.loginUser.mobile,
+      device: state.deviceInfo,
+      moneyReqForm: state.moneyReqForm,
+      calc: {
+        interest: (parseInt(state.moneyReqForm.money) / 10000 * 3 * 7 * parseInt(state.moneyReqForm.periodNum)).toFixed(2),
+        manage: (parseInt(state.moneyReqForm.money) / 10000 * 27 * 7 * parseInt(state.moneyReqForm.periodNum)).toFixed(2)
+      }
+    };
+  },
   dispatch=>({
     action: bindActionCreators({
       deviceInfo: action.deviceInfo,

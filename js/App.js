@@ -6,11 +6,13 @@ import {
   View,
 } from 'react-native'
 
+import { bindActionCreators } from 'redux';
 import { connect, Provider } from 'react-redux';
 import { Scene, Router, Actions, Reducer } from 'react-native-router-flux';
 
 import configStore from './configStore';
 import * as page from './page';
+
 import IconFont from './IconFont';
 
 class TabIcon extends Component {
@@ -38,6 +40,21 @@ class BackButton extends Component {
   }
 }
 
+class AddBankCardButton extends Component{
+  render(){
+    return(
+      <View style={[this.props.style, {flexDirection:'row',padding:0}]}>
+      <TouchableOpacity style={{flex:1, flexDirection:'row',justifyContent:'flex-end'}}
+        onPress={()=>Actions.bankCard()}>
+        <View style={{justifyContent:'center'}}>
+          <IconFont name='add' size={20} color='#fff' style={{marginRight:5}} />
+        </View>
+      </TouchableOpacity>
+      </View>
+    )
+  }
+}
+
 const ConnectedRouter = connect()(Router);
 
 const getSceneStyle = (props, computedProps) => {
@@ -57,6 +74,9 @@ const getSceneStyle = (props, computedProps) => {
 };
 
 class App extends Component {
+  componentDidMount(){
+
+  }
   render(){
     return (
       <ConnectedRouter
@@ -84,6 +104,14 @@ class App extends Component {
 
         <Scene key='helpBindICloud' component={page.HelpBindICloudPage} hideNavBar={false} hideTabBar={true} title='申请金额' backButton={BackButton} />
         <Scene key='helpFlow' component={page.HelpFlowPage} hideNavBar={false} hideTabBar={true} title='申请金额' backButton={BackButton} />
+
+        <Scene key='bankCardList' component={page.BankCardListPage} hideNavBar={false} hideTabBar={true} title='银行卡' backButton={BackButton} rightButton={AddBankCardButton} />
+        <Scene key='bankCard' component={page.BankCardPage} hideNavBar={false} hideTabBar={true} title='添加银行卡' backButton={BackButton} />
+        <Scene key='inputBankType' component={page.InputBankTypePage} hideNavBar={false} hideTabBar={true} title='选择银行' backButton={BackButton} />
+        <Scene key='inputBankCard' component={page.InputBankCardPage} hideNavBar={false} hideTabBar={true} title='选择银行卡' backButton={BackButton} />
+
+
+        <Scene key='qrCode' component={page.QRCodePage} hideNavBar={false} hideTabBar={true} title='我的二维码' backButton={BackButton} />
 
       </ConnectedRouter>
     );

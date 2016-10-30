@@ -4,7 +4,6 @@
  */
 
 import { createIconSet } from 'react-native-vector-icons';
-
 const glyphMap = {
   "check": 58892,
   "back": 58880,
@@ -16,6 +15,7 @@ const glyphMap = {
   "homefill": 58885,
   "lock": 58893,
   "selection": 58889,
+  "add": 58895,
   "vipcard": 58890,
   "searchlist": 58886,
   "creative": 58887,

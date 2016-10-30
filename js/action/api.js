@@ -5,9 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import mapValues from 'lodash/mapValues';
 import forEach from 'lodash/forEach';
 
-//let httpServer = 'http://www.tdong.cn:8080/api/';
-
-let httpServer = 'http://221.231.6.51:81/api/';
+import { httpServer } from '../config';
 
 let httpApiList = {
   'mobileCode': {url:'mobileCode'},
@@ -18,7 +16,12 @@ let httpApiList = {
   'applyList': {url:'admin/loan/applyList', withToken:true},
   'userInfo': {url:'admin/user/info', withToken:true},
   'uploadImage': {url:'admin/user/uploadImage', withToken:true},
-
+  'bankList': {url:'admin/bank/bankType', withToken:true},
+  'bankApply': {url:'admin/bank/apply', withToken:true},
+  'bankCardList': {url:'admin/bank/list', withToken:true},
+  'bankCardDelete': {url:'admin/bank/delete', withToken:true},
+  'icloudBind': {url:'admin/loan/icloudBind', withToken:true},
+  'loanHasReceive': {url:'admin/loan/hasreceive', withToken:true},
   'moneyReq': 'moneyReq',
   'moneyReqList': 'moneyReqList',
   'memberAuthList': 'member-auth-list',

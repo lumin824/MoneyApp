@@ -19,7 +19,20 @@
   NSURL *jsCodeLocation;
 
   [[RCTBundleURLProvider sharedSettings] setDefaults];
+  
+  
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+  
+#if RCT_DEV
+#if TARGET_OS_SIMULATOR
+  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios"];
+#else
+  NSString *URLString = [NSString stringWithFormat:@"http://%@:8081/index.ios.bundle?platform=ios", @"192.168.1.3" ];
+  jsCodeLocation = [NSURL URLWithString:URLString];
+#endif
+#else
+  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+#endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"MoneyApp"
